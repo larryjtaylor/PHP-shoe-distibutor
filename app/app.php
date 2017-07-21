@@ -44,5 +44,14 @@
     $app->get('/stores', function() use($app) {
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
+
+    $app->post("/stores", function() use($app) {
+        $store_name = $_POST['store_name'];
+        $id = $_POST['id'];
+        $store = new Store($store_name, $id);
+        $store->save();
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
+    });
+
     return $app;
 ?>

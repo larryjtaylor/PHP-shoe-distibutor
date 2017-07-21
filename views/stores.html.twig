@@ -13,7 +13,7 @@
             {% if stores is not empty %}
                 <ul>
                     {% for store in stores %}
-                    <li><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a> - ${{ store.getPrice }}</li>
+                    <li><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -24,7 +24,7 @@
             <form action="/stores" method="post">
                 <label for="store_name">Store name:</label>
                 <input type="text" name="store_name" id="store_name" placeholder="ex: Reebike" required><br>
-                
+
                 <button type="submit" class="btn-success">Add it!</button>
             </form>
 
