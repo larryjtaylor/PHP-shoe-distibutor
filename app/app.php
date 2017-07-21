@@ -13,6 +13,12 @@
         'twig.path' => __DIR__.'/../views'
     ));
 
-    // routes
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
+
+    $app->get('/', function() use($app) {
+        return $app['twig']->render('index.html.twig');
+    });
 
     return $app;
+?>
