@@ -151,5 +151,25 @@
             // Assert
             $this->assertEquals([], $result);
         }
+
+        function testFind()
+        {
+            // Arrange
+            $brand_name = 'Beats Me';
+            $price = 50;
+            $test_brand = new Brand($brand_name, $price);
+            $test_brand->save();
+
+            $brand_name2 = 'Brokeback Mountain';
+            $price2 = 60;
+            $test_brand2 = new Brand($brand_name2, $price2);
+            $test_brand2->save();
+
+            // Act
+            $result = Brand::find($test_brand->getId());
+
+            // Assert
+            $this->assertEquals($test_brand, $result);
+        }
     }
 ?>
