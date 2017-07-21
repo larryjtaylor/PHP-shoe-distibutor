@@ -12,6 +12,11 @@
 
     class StoreTest extends PHPUnit_Framework_TestCase
     {
+
+        protected function tearDown()
+        {
+            Store::deleteAll();
+        }
         function testGetStoreName()
         {
             // Arrange
@@ -57,6 +62,43 @@
             $executed = $test_store->save();
             // Assert
             $this->assertTrue($executed, "Store not successfully saved to database");
+        }
+
+        function testGetAll()
+        {
+            // Arrange
+            $store_name = 'Footsies';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $store_name2 = 'Shoeville';
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+            // Act
+            $result = Store::getAll();
+
+            // Assert
+            $this->assertEquals([$test_store, $test_store2], $result);
+        }
+
+        function testDeleteAll()
+        {
+            // Arrange
+            $store_name = 'Footsies';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $store_name2 = 'Shoeville';
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+            // Act
+            Store::deleteAll();
+            $result = Store::getAll();
+
+            // Assert
+            $this->assertEquals([], $result);
         }
     }
 ?>
