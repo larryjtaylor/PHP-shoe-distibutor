@@ -22,8 +22,17 @@
     });
 
     $app->get('/brands', function() use($app) {
-return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
+    $app->post("/brands", function() use($app) {
+        $brand_name = $_POST['brand_name'];
+        $price = $_POST['price'];
+        $id = $_POST['id'];
+        $brand = new Brand($brand_name, $price, $id);
+        $brand->save();
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+    });
+    
     return $app;
 ?>
