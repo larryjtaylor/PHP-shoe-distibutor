@@ -31,5 +31,22 @@
         {
             $this->price = (float) $new_price;
         }
+
+        function getId()
+        {
+            return $this->id;
+        }
+
+        function save()
+        {
+            $executed = $GLOBALS['DB']->exec("INSERT INTO brands (brand_name, price) VALUES ('{$this->getBrandName()}', {$this->getPrice()});");
+
+            if ($executed) {
+                $this->id = $GLOBALS['DB']->lastInsertId();
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 ?>

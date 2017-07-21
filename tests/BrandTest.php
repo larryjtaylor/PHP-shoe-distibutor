@@ -74,5 +74,36 @@
            // Assert
            $this->assertEquals($new_price, $result);
        }
+
+       function testGetId()
+        {
+            // Assert
+            $brand_name = "Blowfish";
+            $price = 50;
+            $test_brand = new Brand($brand_name, $price);
+            $test_brand->save();
+
+            // Act
+            $result = $test_brand->getId();
+
+            // Assert
+            $this->assertTrue(is_numeric($result));
+        }
+
+
+        function testSave()
+        {
+            // Assert
+            $brand_name = "Blowfish";
+            $price = 50;
+            $test_brand = new Brand($brand_name, $price);
+            $test_brand->save();
+
+            // Act
+            $executed = $test_brand->save();
+
+            // Assert
+            $this->assertTrue($executed, "Brand not successfully saved to database");
+        }
     }
 ?>
