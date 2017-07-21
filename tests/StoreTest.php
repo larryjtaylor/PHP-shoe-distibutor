@@ -135,5 +135,18 @@
             // Assert
             $this->assertEquals('Shoeville', $test_store->getStoreName());
         }
+
+        function testDelete()
+        {
+            $store_name = 'Footsies';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $store_name_2 = 'Shoeville';
+            $test_store_2 = new Store($store_name_2);
+            $test_store_2->save();
+            $test_store->delete();
+            $this->assertEquals([$test_store_2], Store::getAll());
+        }
     }
 ?>
