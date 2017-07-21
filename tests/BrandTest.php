@@ -16,8 +16,9 @@
         function testGetBrandName()
         {
             // Assert
-            $brand_name = "JK Rowling";
-            $test_brand = new Brand($brand_name);
+            $brand_name = "Nykeee";
+            $price = 50;
+            $test_brand = new Brand($brand_name, $price);
 
             // Act
             $result = $test_brand->getBrandName();
@@ -28,10 +29,11 @@
         function testSetBrandName()
         {
             // Assert
-            $brand_name = "JK Rowling";
-            $test_brand = new Brand($brand_name);
+            $brand_name = "Nykeee";
+            $price = 50;
+            $test_brand = new Brand($brand_name, $price);
 
-            $new_brand_name = "Sugar Ray";
+            $new_brand_name = "Oddidaws";
 
             // Act
             $test_brand->setBrandName($new_brand_name);
@@ -39,6 +41,21 @@
 
             // Assert
             $this->assertEquals($new_brand_name, $result);
+        }
+
+
+        function testGetPrice()
+        {
+            // Assert
+            $brand_name = "Nykeee";
+            $price = 50;
+            $test_brand = new Brand($brand_name, $price);
+
+            // Act
+            $result = $test_brand->getPrice();
+
+            // Assert
+            $this->assertEquals($price, $result);
         }
     }
 ?>
