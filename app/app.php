@@ -53,5 +53,10 @@
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
+    $app->post("/delete_stores", function() use($app) {
+        Store::deleteAll();
+        return $app['twig']->render('index.html.twig');
+    });
+
     return $app;
 ?>
