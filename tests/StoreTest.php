@@ -3,6 +3,7 @@
     * @backupGlobals disabled
     * @backupStaticAttributes disabled
     */
+
     require_once "src/Store.php";
     require_once "src/Brand.php";
 
@@ -13,10 +14,10 @@
 
     class StoreTest extends PHPUnit_Framework_TestCase
     {
-
         protected function tearDown()
         {
             Store::deleteAll();
+            Brand::deleteAll();
         }
         function testGetStoreName()
         {
@@ -29,7 +30,7 @@
             $this->assertEquals($store_name, $result);
         }
 
-        function testSetTitle()
+        function testSetStoreName()
        {
            // Arrange
            $store_name = 'Footsies';
@@ -48,8 +49,10 @@
             $store_name = 'Footsies';
             $test_store = new Store($store_name);
             $test_store->save();
+
             // Act
             $result = $test_store->getId();
+
             // Assert
             $this->assertTrue(is_numeric($result));
         }
@@ -158,7 +161,7 @@
         function testAddBrand()
         {
             //Arrange
-            $brand_name = "Pewmah";
+            $brand_name = "Nykeee";
             $price = 50;
             $test_brand = new brand($brand_name, $price);
             $test_brand->save();
