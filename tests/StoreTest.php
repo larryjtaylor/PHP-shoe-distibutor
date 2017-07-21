@@ -35,5 +35,28 @@
            // Assert
            $this->assertEquals($new_store_name, $result);
         }
+
+        function testGetId()
+        {
+            // Arrange
+            $store_name = 'Footsies';
+            $test_store = new Store($store_name);
+            $test_store->save();
+            // Act
+            $result = $test_store->getId();
+            // Assert
+            $this->assertTrue(is_numeric($result));
+        }
+
+        function testSave()
+        {
+            //Arrange
+            $store_name = "Footsies";
+            $test_store= new Store($store_name);
+            //Act
+            $executed = $test_store->save();
+            // Assert
+            $this->assertTrue($executed, "Store not successfully saved to database");
+        }
     }
 ?>
