@@ -103,14 +103,37 @@
 
         function testFind()
         {
+            // Arrange
             $store_name = 'Footsies';
             $test_store = new Store($store_name);
             $test_store->save();
+
             $store_name2 = 'Shoeville';
             $test_store2 = new Store($store_name2);
             $test_store2->save();
+
+            // Act
             $result = Store::find($test_store->getId());
+
+            // Assert
             $this->assertEquals($test_store, $result);
+        }
+
+
+        function testUpdate()
+        {
+            // Arrange
+            $store_name = 'Footsies';
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $new_store_name = 'Shoeville';
+
+            // Act
+            $test_store->update($new_store_name);
+
+            // Assert
+            $this->assertEquals('Shoeville', $test_store->getStoreName());
         }
     }
 ?>
