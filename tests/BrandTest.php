@@ -57,5 +57,22 @@
             // Assert
             $this->assertEquals($price, $result);
         }
+
+        function testSetPrice()
+       {
+           // Assert
+           $brand_name = "Blowfish";
+           $price = 50;
+           $test_brand = new Brand($brand_name, $price);
+
+           $new_price = 1;
+
+           // Act
+           $test_brand->setPrice($new_price);
+           $result = $test_brand->getPrice();
+
+           // Assert
+           $this->assertEquals($new_price, $result);
+       }
     }
 ?>

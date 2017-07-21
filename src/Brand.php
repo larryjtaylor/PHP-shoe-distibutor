@@ -29,7 +29,7 @@
 
         function setPrice($new_price)
         {
-            // $this->price = (float) $new_price
+            $this->price = (float) $new_price;
         }
     }
 ?>
