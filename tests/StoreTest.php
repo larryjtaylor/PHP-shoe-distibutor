@@ -22,5 +22,18 @@
             // Assert
             $this->assertEquals($store_name, $result);
         }
+
+        function testSetTitle()
+       {
+           // Arrange
+           $store_name = 'Footsies';
+           $test_store = new Store($store_name);
+           $new_store_name = 'Shoeville';
+           // Act
+           $test_store->setStoreName($new_store_name);
+           $result = $test_store->getStoreName();
+           // Assert
+           $this->assertEquals($new_store_name, $result);
+        }
     }
 ?>
