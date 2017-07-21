@@ -1,6 +1,7 @@
 <?php
-    require_once __DIR__."/../vendor/autoload.php";
-    require_once __DIR__."/../src/Store.php";
+    require_once __DIR__.'/../vendor/autoload.php';
+    require_once __DIR__.'/../src/Store.php';
+    require_once __DIR__.'/../src/Brand.php';
 
     $server = 'mysql:host=localhost:8889;dbname=shoes';
     $username = 'root';
@@ -18,6 +19,10 @@
 
     $app->get('/', function() use($app) {
         return $app['twig']->render('index.html.twig');
+    });
+
+    $app->get('/brands', function() use($app) {
+return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
     return $app;
