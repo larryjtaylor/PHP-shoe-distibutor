@@ -13,9 +13,14 @@
 
     class BrandTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Brand::deleteAll();
+        }
+
         function testGetBrandName()
         {
-            // Assert
+            // Arrange
             $brand_name = "Nykeee";
             $price = 50;
             $test_brand = new Brand($brand_name, $price);
@@ -28,7 +33,7 @@
         }
         function testSetBrandName()
         {
-            // Assert
+            // Arrange
             $brand_name = "Nykeee";
             $price = 50;
             $test_brand = new Brand($brand_name, $price);
@@ -46,7 +51,7 @@
 
         function testGetPrice()
         {
-            // Assert
+            // Arrange
             $brand_name = "Nykeee";
             $price = 50;
             $test_brand = new Brand($brand_name, $price);
@@ -60,7 +65,7 @@
 
         function testSetPrice()
        {
-           // Assert
+           // Arrange
            $brand_name = "Blowfish";
            $price = 50;
            $test_brand = new Brand($brand_name, $price);
@@ -77,7 +82,7 @@
 
        function testGetId()
         {
-            // Assert
+            // Arrange
             $brand_name = "Blowfish";
             $price = 50;
             $test_brand = new Brand($brand_name, $price);
@@ -93,7 +98,7 @@
 
         function testSave()
         {
-            // Assert
+            // Arrange
             $brand_name = "Blowfish";
             $price = 50;
             $test_brand = new Brand($brand_name, $price);
@@ -104,6 +109,47 @@
 
             // Assert
             $this->assertTrue($executed, "Brand not successfully saved to database");
+        }
+
+        function testGetAll()
+        {
+            // Arrange
+            $brand_name = "Blowfish";
+            $price = 50;
+            $test_brand = new Brand($brand_name, $price);
+            $test_brand->save();
+
+            $brand_name2 = "Vans";
+            $price2 = 100;
+            $test_brand2 = new Brand($brand_name2, $price2);
+            $test_brand2->save();
+
+            // Act
+            $result = Brand::getAll();
+
+            // Assert
+            $this->assertEquals([$test_brand, $test_brand2], $result);
+        }
+
+        function testDeleteAll()
+        {
+            // Arrange
+            $brand_name = "Blowfish";
+            $price = 50;
+            $test_brand = new Brand($brand_name, $price);
+            $test_brand->save();
+
+            $brand_name2 = "Vans";
+            $price2 = 100;
+            $test_brand2 = new Brand($brand_name2, $price2);
+            $test_brand2->save();
+
+            // Act
+            Brand::deleteAll();
+            $result = Brand::getAll();
+
+            // Assert
+            $this->assertEquals([], $result);
         }
     }
 ?>
