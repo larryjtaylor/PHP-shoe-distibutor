@@ -4,13 +4,33 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    <title>Brands</title>
     </head>
     <body>
-        <h1>{{ brand.getBrandName }}</h1>
+        <div class="jumbotron">
+            <h1>Shoes and Such</h1>
+        </div>
+        <div class="container">
+            <h1>{{ brand.getBrandName }}</h1>
 
-        <h2>This brand is available in the following stores:</h2>
-            <ul>
-                <li></li>
-            </ul>
+            <h2>This brand is available in the following stores:</h2>
+                <ul>
+                    <li></li>
+                </ul>
 
-        <p><a href='/'>Home</a></p>
+            <h4>Add this brand to a store:</h4>
+
+            <form action='/add_stores' method='post'>
+                <input id="brand_name" name="brand_name" type="hidden" value="{{ brand.getId }}">
+                <label for='store_name'>Select a Store</label>
+                <select id='store_name' name='store_name' type='text'><br>
+                  {% for store in all_stores %}
+                    <option value="{{ store.getId }}"> {{ store.getStoreName }} </option>
+                  {% endfor %}
+              </select>
+
+                <button type='submit'>Add store</button>
+            </form>
+
+            <p><a href="/brands">Back to Brands</a></p>
+            <p><a href='/'>Home</a></p>
+        </div>
     </body>
 </html>

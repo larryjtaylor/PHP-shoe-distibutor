@@ -11,6 +11,22 @@
         <h1>{{ store.getStoreName }}</h1>
 
         <p><a href="/stores/{{ store.getId }}/edit">Edit this store</a></p>
+
+        <h4>Add a brand to this store:</h4>
+
+        <form action='/add_brands' method='post'>
+            <input type="hidden" name="store_id" value="{{ store.getId }}">
+            <label for='brand_name'>Select a Brand</label>
+            <select id='brand_name' name='brand_name' type='text'><br>
+              {% for brand in all_brands %}
+                <option value="{{ brand.getId }}"> {{ brand.getBrandName }} </option>
+              {% endfor %}
+          </select>
+
+            <button type='submit' class="btn btn-info">Add brand</button>
+        </form>
+
+        <p><a href="/stores">Back to Stores</a></p>
         <p><a href='/'>Home</a></p>
     </div>
   </body>
