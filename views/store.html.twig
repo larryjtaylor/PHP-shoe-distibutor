@@ -12,15 +12,28 @@
 
         <p><a href="/stores/{{ store.getId }}/edit">Edit this store</a></p>
 
+        <h2>This store carries the following brands:</h2>
+        <ul>
+            {% if brands is not empty %}
+                <ul>
+                    {% for brand in brands %}
+                    <li>{{ brand.getBrandName }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>This store is not stocked yet!</p>
+            {% endif %}
+        </ul>
+
         <h4>Add a brand to this store:</h4>
 
         <form action='/add_brands' method='post'>
-            <input type="hidden" name="store_id" value="{{ store.getId }}">
-            <label for='brand_name'>Select a Brand</label>
-            <select id='brand_name' name='brand_name' type='text'><br>
-              {% for brand in all_brands %}
-                <option value="{{ brand.getId }}"> {{ brand.getBrandName }} </option>
-              {% endfor %}
+            <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
+            <label for='brand_id'>Select a Brand</label>
+            <select id='brand_id' name='brand_id' type='text'><br>
+                {% for brand in all_brands %}
+                    <option value="{{ brand.getId }}">{{ brand.getBrandName }} </option>
+                {% endfor %}
           </select>
 
             <button type='submit' class="btn btn-info">Add brand</button>

@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set('America/Los_Angeles');
     require_once __DIR__.'/../vendor/autoload.php';
     require_once __DIR__.'/../src/Store.php';
     require_once __DIR__.'/../src/Brand.php';
@@ -36,25 +37,20 @@
 
     $app->post("/delete_brands", function() use($app) {
         Brand::deleteAll();
-        return $app['twig']->render('index.html.twig');
+        return $app['twig']->render('brands.html.twig');
     });
 
-    $app->get("/brand/{id}", function($id) use ($app) {
+    $app->get("/brands/{id}", function($id) use ($app) {
         $brand = Brand::find($id);
-        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
-    });
-
-    $app->post("/add_stores", function() use($app){
-        $store_id = Store::find($_POST['store_id']);
-        $brand = Brand::find($_POST['brand_id']);
-        $brand->addStore($store);
         return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brands' => Brand::getAll(), 'stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
     });
 
-    // $app->get("/brands/{id}/edit", function($id) use ($app) {
-    //     $brand = Brand::find($id);
-    //     return $app['twig']->render('brand_edit.html.twig', array('brand' => $brand));
-    // });
+    $app->post('/add_stores', function() use($app){
+        $brand = Brand::find($_POST['brand_id']);
+        $store = Store::find($_POST['store_id']);
+        $brand->addStore($store);
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brands' => Brand::getAll(), 'stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
+    });
 
 /////////////////////////////////////////
 
@@ -77,8 +73,8 @@
 
     $app->get("/stores/{id}", function($id) use ($app) {
        $store = Store::find($id);
-       return $app['twig']->render('store.html.twig', array('store' => $store));
-   });
+       return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $store->getBrands(), 'all_brands'=> Brand::getAll()));
+    });
 
     $app->get("/stores/{id}/edit", function($id) use ($app) {
         $store = Store::find($id);
