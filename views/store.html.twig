@@ -1,48 +1,57 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
-    <title>Stores</title>
-  </head>
-  <body>
-      <div class="jumbotron">
-          <h1 class="pageHeader">Shoes and Such</h1>
-      </div>
-      <div class="container">
-        <h1>{{ store.getStoreName }}</h1>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+        <title>Stores</title>
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1 class="pageHeader">Shoes and Such</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" >
+                    <h1 id="storeLeft">{{ store.getStoreName }}</h1>
 
-        <p><a href="/stores/{{ store.getId }}/edit">Edit this store</a></p>
+                    <h4>This store carries the following brands:</h4>
+                    <ul>
+                        {% if brands is not empty %}
+                        <ul>
+                            {% for brand in brands %}
+                            <li>{{ brand.getBrandName }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <p>This store is not stocked yet!</p>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <img src="/img/hover.jpg" alt="Back to the Future shoes" id="hoverboard">
+                    <p class="goHome"><a href='/'>Home</a></p>
+                </div>
+                <div class="col-md-4">
 
-        <h2>This store carries the following brands:</h2>
-        <ul>
-            {% if brands is not empty %}
-                <ul>
-                    {% for brand in brands %}
-                    <li>{{ brand.getBrandName }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>This store is not stocked yet!</p>
-            {% endif %}
-        </ul>
+                    <p><a href="/stores/{{ store.getId }}/edit">Edit this store</a></p>
 
-        <h4>Add a brand to this store:</h4>
+                    <h4>Add a brand to this store:</h4>
 
-        <form action='/add_brands' method='post'>
-            <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
-            <label for='brand_id'>Select a Brand</label>
-            <select id='brand_id' name='brand_id' type='text'><br>
-                {% for brand in all_brands %}
-                    <option value="{{ brand.getId }}">{{ brand.getBrandName }} </option>
-                {% endfor %}
-          </select>
+                    <form action='/add_brands' method='post'>
+                        <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
+                        <label for='brand_id'>Select a Brand</label>
+                        <select id='brand_id' name='brand_id' type='text'><br>
+                            {% for brand in all_brands %}
+                            <option value="{{ brand.getId }}">{{ brand.getBrandName }} </option>
+                            {% endfor %}
+                        </select>
 
-            <button type='submit' class="btn btn-info">Add brand</button>
-        </form>
+                        <button type='submit' class="btn btn-info">Add brand</button>
+                    </form>
 
-        <p><a href="/stores">Back to Stores</a></p>
-        <p><a href='/'>Home</a></p>
-    </div>
-  </body>
+                    <p><a href="/stores">Back to Stores</a></p>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

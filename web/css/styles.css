@@ -48,6 +48,15 @@ p {
     text-align: center;
 }
 
+#storeLeft {
+    text-align: center;
+    padding-right: 10%;
+}
+
+#hoverboard {
+    width: 95%;
+}
+
 .goHome {
     text-align: center;
 }
