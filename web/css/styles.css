@@ -21,6 +21,10 @@ body {
     width: 20%;
 }
 
+.homeButton {
+    width: 80%;
+}
+
 p {
     font-size: 18px;
 }
@@ -37,26 +41,32 @@ p {
 }
 
 #chucks {
-    width: 95%;
+    width: 100%;
 }
 
 #dame {
-    width: 95%;
+    width: 100%;
 }
 
 #edit {
     text-align: center;
 }
 
-#storeLeft {
+.brandOrStoreName {
     text-align: center;
     padding-right: 10%;
 }
 
 #hoverboard {
-    width: 95%;
+    width: 100%;
+    margin-bottom: 5%;
 }
 
+#gump {
+    width: 100%;
+    margin-bottom: 16%;
+}
 .goHome {
-    text-align: center;
+    width: 25%;
+    margin-left: 40%;
 }

@@ -3,7 +3,7 @@
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
-        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">   
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
         <title>Brands</title>
     </head>
     <body>
@@ -11,37 +11,45 @@
             <h1 class="pageHeader">Shoes and Such</h1>
         </div>
         <div class="container">
-            <h1>{{ brand.getBrandName }}</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <h1 class="brandOrStoreName">{{ brand.getBrandName }}</h1>
 
-            <h2>This brand is available in the following stores:</h2>
-            <ul>
-                {% if stores is not empty %}
+                    <h2>This brand is available in the following stores:</h2>
                     <ul>
-                        {% for store in stores %}
-                        <li>{{ store.getStoreName }}</li>
-                        {% endfor %}
+                        {% if stores is not empty %}
+                        <ul>
+                            {% for store in stores %}
+                            <li>{{ store.getStoreName }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <p>This brand is not in any stores yet!</p>
+                        {% endif %}
                     </ul>
-                {% else %}
-                    <p>This brand is not in any stores yet!</p>
-                {% endif %}
-            </ul>
+                </div>
+            <div class="col-md-4">
+                <img src="/img/gump.jpg" alt="Run, Forrest, Run" id="gump">
+                <p class="goHome"><a href='/'><img src="/img/home.png" alt="home" class="homeButton"></a></p>
+            </div>
+            <div class="col-md-4">
+                <h4>Add this brand to a store:</h4>
 
-            <h4>Add this brand to a store:</h4>
+                <form action='/add_stores' method='post'>
+                    <input id="brand_id" name="brand_id" type="hidden" value="{{ brand.getId }}">
+                    <label for='store_id'>Select a Store</label>
+                    <select id='store_id' name='store_id' type='text'>
+                        {% for store in all_stores %}
+                        <option value="{{ store.getId }}">{{ store.getStoreName }} </option>
+                        {% endfor %}
+                    </select>
 
-            <form action='/add_stores' method='post'>
-                <input id="brand_id" name="brand_id" type="hidden" value="{{ brand.getId }}">
-                <label for='store_id'>Select a Store</label>
-                <select id='store_id' name='store_id' type='text'>
-                  {% for store in all_stores %}
-                    <option value="{{ store.getId }}">{{ store.getStoreName }} </option>
-                  {% endfor %}
-              </select>
+                    <button type='submit' class="btn btn-info">Add store</button>
+                </form>
 
-                <button type='submit' class="btn btn-info">Add store</button>
-            </form>
-
-            <p><a href="/brands">Back to Brands</a></p>
-            <p><a href='/'>Home</a></p>
+                <p><a href="/brands">Back to Brands</a></p>
+            </div>
+            </div>
         </div>
     </body>
 </html>
