@@ -1,0 +1,41 @@
+.jumbotron {
+    background-image: url("/img/bball.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 80;
+}
+
+.pageHeader {
+    text-align: right;
+    padding-right: 20%;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 56px;
+    margin: 0;
+}
+
+.butt {
+    width: 20%;
+}
+
+p {
+    font-size: 18px;
+}
+
+#jordan {
+    width: 88%;
+    margin-bottom: 5%;
+}
+
+#shoeStore {
+    width: 85%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+#chucks {
+    width: 95%;
+}
+
+#goHome {
+    text-align: center;
+}
