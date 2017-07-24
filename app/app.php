@@ -27,7 +27,7 @@
     });
 
     $app->post("/brands", function() use($app) {
-        $brand_name = $_POST['brand_name'];
+        $brand_name = ucfirst(strtolower($_POST['brand_name']));
         $price = $_POST['price'];
         $id = $_POST['id'];
         $brand = new Brand($brand_name, $price, $id);
@@ -59,7 +59,7 @@
     });
 
     $app->post("/stores", function() use($app) {
-        $store_name = $_POST['store_name'];
+        $store_name = ucfirst(strtolower($_POST['store_name']));
         $id = $_POST['id'];
         $store = new Store($store_name, $id);
         $store->save();
