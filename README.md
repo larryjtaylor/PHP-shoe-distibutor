@@ -36,7 +36,7 @@ This project requires the installation of [MAMP](https://www.mamp.info/en/), [Co
 * The program will maintain a list of inputted show brands and prices.
     * Input: Reebike
              50
-    * Display: Reebike - $50
+    * Display: Reebike - $50.00
 
 * The program will maintain a list of inputted shoe stores.
     * Input: Shoeville
@@ -56,29 +56,22 @@ This project requires the installation of [MAMP](https://www.mamp.info/en/), [Co
 
 * The program will allow a user to see which shoe brands are available at a store.
     * Input: Shoeville
-    * Display: Reebike - $50
-               Nykeee - $65
-               Oddidaws - $120
+    * Display: Reebike - $50.00
+               Nykeee - $65.35
+               Oddidaws - $120.99
 
 * The program will allow a user to see which shoe stores carry a  given brand.
     * Input: Reebike
     * Display: Shoeville
                Footsies, Inc.
 
+* The program will return all store names and brand names as capitalized, however it is input.
+    * Input: reeBIKE
+    * Display: Reebike
 
-## MySQL Commands
-The following MySQL commands were entered when creating the database and during testing:
-
-* CREATE DATABASE hair_salon;
-* USE hair_salon;
-* CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR (255));
-* CREATE TABLE clients (id serial PRIMARY KEY, client_name VARCHAR (255), phone_number VARCHAR (255));
-
-* copy hair_salon to hair_salon_test in phpMyAdmin
-* after creating Stylist and Client classes with private properties and methods, and passing all corresponding tests, a one-to-many relationship can be built between a Stylist and Clients:
-    * ALTER TABLE clients ADD stylist_id int;   
-    * DROP DATABASE hair_salon_test;
-    * reload phpMyAdmin and copy hair_salon to hair_salon_test
+* The program will display the brand price as currency, however it is input.
+    * Input: 35
+    * Display: $35.00
 
 ## Technologies Used
 
@@ -86,8 +79,6 @@ PHP, HTML, Bootstrap CSS, Silex, Twig, Composer, MAMP, PHPUnit, MySQL, phpMyAdmi
 
 ### License
 
-Copyright &copy; 2017 Calla Rudolph
-
-_Please email me at the above address with any comments or improvements you have found!_
+Copyright &copy; 2017 Larry Taylor
 
 This software is licensed under the MIT license.
